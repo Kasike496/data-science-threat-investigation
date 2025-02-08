@@ -1,0 +1,57 @@
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Example 1: Simple Column Chart
+
+categories = ['Category A', 'Category B', 'Category C', 'Category D']
+values = [25, 40, 30, 55]
+
+plt.figure(figsize=(8, 6))  # Adjust figure size if needed
+plt.bar(categories, values, color='skyblue')
+plt.xlabel("Categories")
+plt.ylabel("Values")
+plt.title("Simple Column Chart")
+plt.show()
+
+
+# Example 2: Grouped Column Chart
+
+categories = ['Category A', 'Category B', 'Category C']
+group1_values = [25, 40, 30]
+group2_values = [35, 25, 45]
+
+x = np.arange(len(categories))  # the label locations
+width = 0.35  # the width of the bars
+
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, group1_values, width, label='Group 1', color='skyblue')
+rects2 = ax.bar(x + width/2, group2_values, width, label='Group 2', color='lightcoral')
+
+ax.set_ylabel('Values')
+ax.set_title('Grouped Column Chart')
+ax.set_xticks(x)
+ax.set_xticklabels(categories)
+ax.legend()
+
+fig.tight_layout()
+plt.show()
+
+
+# Example 3: Stacked Column Chart
+
+categories = ['Category A', 'Category B', 'Category C']
+values1 = [25, 40, 30]
+values2 = [15, 20, 25]
+values3 = [10, 15, 20]
+
+plt.figure(figsize=(8, 6))
+plt.bar(categories, values1, color='skyblue', label='Value 1')
+plt.bar(categories, values2, bottom=values1, color='lightcoral', label='Value 2')
+plt.bar(categories, values3, bottom=np.array(values1) + np.array(values2), color='lightgreen', label='Value 3')
+
+plt.xlabel("Categories")
+plt.ylabel("Values")
+plt.title("Stacked Column Chart")
+plt.legend()
+plt.show()
